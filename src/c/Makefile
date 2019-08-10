@@ -41,19 +41,19 @@ CPIF=>
 all:	nt markup mnt finduses nwmktemp
 
 nt:	$(TANGLEOBJS)
-	$(CC) $(CFLAGS) -o nt $(TANGLEOBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o nt $(TANGLEOBJS)
 
 nwmktemp: nwmktemp.o
-	$(CC) $(CFLAGS) -o nwmktemp nwmktemp.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o nwmktemp nwmktemp.o
 
 finduses:	$(FINDUSESOBJS)
-	$(CC) $(CFLAGS) -o finduses $(FINDUSESOBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o finduses $(FINDUSESOBJS)
 
 markup:	$(MARKUPOBJS)
-	$(CC) $(CFLAGS) -o markup $(MARKUPOBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o markup $(MARKUPOBJS)
 
 mnt:	$(MNTOBJS)
-	$(CC) $(CFLAGS) -o mnt $(MNTOBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o mnt $(MNTOBJS)
 
 source:	$(SRCS)
 touch: $(SRCS)
