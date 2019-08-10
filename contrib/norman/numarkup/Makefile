@@ -9,7 +9,7 @@ OBJS = main.o pass1.o latex.o input.o scraps.o names.o arena.o global.o
 .nw.c: ;	notangle -R"$@"'*' -L $< | cpif $@
 .nw.h: ;	notangle -R"$@" $< | cpif $@
 
-all: 
+all:
 	noweb -t numarkup.nw
 	make $(TARGET)
 

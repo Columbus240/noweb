@@ -17,7 +17,7 @@
 
 \title{Literate-Programming Tools\\Can Be Simple and Extensible}
 \author{Norman Ramsey\thanks{Author's current address is Bellcore, 445
-South Street, Morristown, NJ 07960; 
+South Street, Morristown, NJ 07960;
 send email to {\tt norman@bellcore.com}.}\\Department of Computer Science,
 Princeton University}
 
@@ -76,7 +76,7 @@ This paper explains how to use the {\tt noweb} tools and gives
 examples of their use.
 It sketches the implementation of the tools and describes how new
 tools are added to the set.
-Because 
+Because
 {\tt WEB} and {\tt noweb} overlap, but each does some things that the
 other cannot,
 this paper enumerates the differences.
@@ -100,12 +100,12 @@ programming~%
 {\tt WEB} was  adapted to programming languages other than
 Pascal~\cite{levy:cweb,ramsey:building,thimbleby:cweb}. % guntermann:cweb,sewell:mangle,
 %
-With experience, many {\tt WEB} users became dissatisfied~\cite{ramsey:literate}. 
+With experience, many {\tt WEB} users became dissatisfied~\cite{ramsey:literate}.
 Some found {\tt WEB} not worth the trouble, as did
 one author of the program appearing in Appendix~C
 of Reference~\refno{sewell:weaving}.
 Others built their own systems for literate
- programming.  % ~\cite{hamilton:expanding,cvw:loom}. 
+ programming.  % ~\cite{hamilton:expanding,cvw:loom}.
 The literate-programming forum was dropped, on the grounds that
 literate programming had become the province of those who could build
 their own tools~\cite{cvw:assessment}.
@@ -120,7 +120,7 @@ The programmer is encouraged to choose an order that helps explain the program.
 The code parts are like macro definitions;  they have names, and they contain
 both code and references to other modules.
 A {\tt WEB} file represents a single program;
-{\tt TANGLE}  extracts that program from the {\tt WEB} source. 
+{\tt TANGLE}  extracts that program from the {\tt WEB} source.
 One special module has a code part with no name, and {\tt TANGLE}
 expands the code part of that module to extract the program.
 {\tt WEAVE} converts {\tt WEB} source to
@@ -139,16 +139,16 @@ The versions for languages other than Pascal offer slightly different
 functions and different sets of control sequences.
 Significant effort is required to make {\tt WEB} usable with a new
 programming language, even when using a tool designed for that
-purpose~\cite{ramsey:building}. 
+purpose~\cite{ramsey:building}.
 
 {\tt WEB}'s shortcomings make it difficult to explore the {\em idea}
 of literate programming; too much effort is required to master the
 {\em tool}.
-I designed a new tool that is 
+I designed a new tool that is
 simple, extensible, and independent of the target programming language.
-{\tt noweb} is designed 
+{\tt noweb} is designed
 around one idea: writing named chunks of code in any order, with
-interleaved documentation. 
+interleaved documentation.
 Like {\tt WEB}, and like all literate-programming tools, it can
 be used to write a program in pieces and to present those pieces in
 an order that helps explain the program.
@@ -170,7 +170,7 @@ to {\tt noweb} without recompiling.
 \section{{\tt noweb}} % , a minimal literate-programming system}
 A {\tt noweb} file contains program source code interleaved with documentation.
 When {\tt notangle} is given a {\tt noweb} file, it writes the program
- on standard output. 
+ on standard output.
 When {\tt noweave} is given a {\tt noweb} file, it reads the {\tt
 noweb} source and produces, on standard output, {\TeX} source for
 typeset documentation.
@@ -222,9 +222,9 @@ Documentation chunks begin with a line that starts with an at sign ({\tt @})
 followed by a space or newline.
 They have no names.
 Code chunks begin with
-\begin{quote} 
+\begin{quote}
 \tt <<{\rm\it chunk name}>>=
-\end{quote} 
+\end{quote}
 on a line by itself.
 The double left angle bracket ({\tt <<}) must be in the first column.
 Chunks are terminated by the beginning of another chunk, or by end of file.
@@ -233,14 +233,14 @@ chunk, it is assumed to be the first line of a documentation chunk.
 
 Documentation chunks contain text that is ignored by {\tt notangle}
 and copied verbatim to standard output by
-{\tt noweave} (except for quoted code).   
+{\tt noweave} (except for quoted code).
 {\tt noweave} can work with {\LaTeX}, or it can use
-% insert a reference to 
+% insert a reference to
 a plain-{\TeX} macro package, supplied with {\tt noweb}, that defines
 commands like \verb+\chapter+ and \verb+\section+.
 
 Code chunks contain program source code and references to other code
-chunks.  
+chunks.
 Several code chunks may have the same name; {\tt notangle}
 concatenates their definitions to produce a single chunk, just as
  {\tt TANGLE} does.
@@ -253,7 +253,7 @@ which are themselves expanded, and so on.
 chunks with respect to the chunks in which they appear.
 
 Code may be quoted within documentation chunks by placing double
-square brackets around it ({\tt [[}$\ldots${\tt]]}). 
+square brackets around it ({\tt [[}$\ldots${\tt]]}).
 These double square brackets are ignored by {\tt notangle}, but they
 are used by {\tt noweave} to give code special typographic
 treatment.
@@ -266,9 +266,9 @@ using a preceding at sign (e.g.~``{\tt @<<}'').
 Any line beginning with ``{\tt@ }'' terminates a code chunk.
 If such a line has the form
 ``{\tt@~\char`\%def {\rm\it identifiers}}'',
-it also means that the preceding chunk defines the identifiers listed 
+it also means that the preceding chunk defines the identifiers listed
 in {\it identifiers}.
-This notation provides a way of marking definitions manually when 
+This notation provides a way of marking definitions manually when
 no automatic marking is available.%
 \footnote{Starting with version~2.10, this form is deprecated; new
 code should use \texttt{-filter~btdefn}.}
@@ -303,7 +303,7 @@ program print_primes(output);
   var <<variables of the program>>
     begin <<print the first [[m]] prime numbers>>
     end.
-\end{verbatim} 
+\end{verbatim}
 \caption{Sample {\tt noweb} input, from prime number program}
 \label{sample-input}
 \end{figure}
@@ -311,7 +311,7 @@ program print_primes(output);
 
 
 \begin{figure}
-\begin{quote} 
+\begin{quote}
 \nwbegindocs{4}
 
 This program has no input, because we want to keep it simple.
@@ -334,7 +334,7 @@ program print_primes(output);
     begin \LA{}print the first \code{}m\edoc{} prime numbers\RA{}
     end.
 \nwendcode
-\end{quote} 
+\end{quote}
 \caption{Output produced by {\tt noweave} and {\LaTeX} from Figure~\protect\ref{sample-input}}
 \label{noweave-output}
 \end{figure}
@@ -345,8 +345,8 @@ Experimenting with \verb+noweb+ is easy.
 {\tt noweb} has little syntax: definition and use of code chunks, marking of
 documentation chunks, listing of identifiers defined,
 quoting of code, and quoting of brackets.
-\verb+noweb+ can be used with any programming language, and its 
-manual fits on three pages. 
+\verb+noweb+ can be used with any programming language, and its
+manual fits on three pages.
 
 \begin{figure}
 \begin{verbatim}
@@ -385,7 +385,7 @@ to show on what pages each chunk is defined and used.
 \verb+noweave -index+ adds a local identifier cross-reference after
 each code chunk.
 The example program accompanying this article shows full cross-reference
-information. 
+information.
 
 
 {\tt WEB} files map one to one with both programs and documents.
@@ -404,7 +404,7 @@ from the default root chunk, \LA{}*\RA{}.
 The following Unix commands extract header \verb+foo.h+ and program
 \verb+foo.c+ from {\tt noweb} file \verb+foo.nw+:
 % This trick is explained on pages 265--266 of Reference~\refno{kernighan:unix}.}
-\begin{quote} 
+\begin{quote}
 \begin{verbatim}
 notangle -L foo.nw > foo.c
 notangle -Rheader foo.nw | cpif -ne foo.h
@@ -420,18 +420,18 @@ This trick avoids touching the file \verb+foo.h+ when its contents
 have not changed, which avoids triggering unnecessary recompilations.
 
 A more interesting example is using {\tt noweb} to
-interleave different languages in one source file. 
+interleave different languages in one source file.
 I wrote an \verb+awk+
 script that read a machine description and emitted a disassembler for
 that machine, and I used {\tt noweb} to combine the script and description
 in a single file, so I could place each part of the input next to the
-code that processed that input. 
+code that processed that input.
 The machine description was in the root chunk \LA{}opcodes
 table\RA{}, and the \verb+awk+ script in the default root chunk.
 The processing steps were:
 \begin{verbatim}
 notangle opcodes.nw > opcodes.awk
-notangle -R'opcodes table' opcodes.nw | 
+notangle -R'opcodes table' opcodes.nw |
 awk -f opcodes.awk > disassem.sml
 \end{verbatim}
 The first line extracts the {\tt awk} program into file {\tt opcodes.awk}.
@@ -450,7 +450,7 @@ The code can be
 The two are combined by applying \verb+notangle+ to them both:
 \begin{verbatim}
 notangle pair_list.nw generic_list.nw > pair_list.c
-\end{verbatim} 
+\end{verbatim}
 {\tt noweb} has no parameter mechanism, so the ``generic'' code must
 refer to a fixed set of symbols, and it cannot be checked for errors
 except by compiling \verb+pair_list.c+.
@@ -507,13 +507,13 @@ int y;
 \nwendcode
 \caption{Program to instantiate lists of integer pairs}
 \label{pair-list-example}
-\end{figure} 
+\end{figure}
 
 \iffalse
 I have used \verb+noweb+ for small programs written in various
 languages, including C, Icon, \verb+awk+, and Modula-3.
-Larger projects have included a code generator for 
-Standard ML of New Jersey (written in Standard ML) and 
+Larger projects have included a code generator for
+Standard ML of New Jersey (written in Standard ML) and
 a multi-architecture debugger, written in Modula-3, C, and
 assembly language.
 A colleague used \verb+noweb+ to write an experimental file
@@ -540,7 +540,7 @@ File system&4,400&27,000
 
 I myself have used \verb+noweb+ for code written in various
 languages, including assembly language, \verb+awk+, C, Icon, Modula-3,
-Promela, 
+Promela,
 Standard~ML, and \TeX.%
 \footnote{Readers interested in another example of {\tt noweb} can see
 a published version of one of these programs \cite{ramsey:correctness}.}
@@ -548,7 +548,7 @@ These projects have ranged in size from a few hundred to twenty
 thousand lines of code.
 Other users around the world have undertaken
 {\tt noweb} projects of comparable size in C$++$, Modula-2, occam, Parallel C,
-perl, Prolog, and Scheme. 
+perl, Prolog, and Scheme.
 Two colleagues are using {\tt noweb} to write a book describing the
 design and implementation of a retargetable C compiler.
 
@@ -559,7 +559,7 @@ design and implementation of a retargetable C compiler.
 The \verb+noweb+ syntax is easy to read, write, and edit, but it is
 not easily manipulated by programs.
 To make it easy to extend \verb+noweb+, I have written
-\verb+markup+, which converts \verb+noweb+ source to 
+\verb+markup+, which converts \verb+noweb+ source to
  a representation that is easily manipulated
 by commonly used Unix tools like {\tt sed} and {\tt awk}.
 In this representation,
@@ -614,7 +614,7 @@ The representation of a code chunk is
 \tt @end code $n$
 \end{tabular}}
 \end{quote}
-where {\it codeline} may be {\tt @text}, {\tt @nl}, {\tt @use}, 
+where {\it codeline} may be {\tt @text}, {\tt @nl}, {\tt @use},
 {\tt @file}, {\tt @line}, or {\tt @index}.
 
 The \verb+noweb+ tools are implemented by piping the output of
@@ -648,14 +648,14 @@ using a trailing ellipsis, as in {\tt WEB}.
 To share programs with colleagues who don't enjoy literate
 programming, I use a filter that
 places each line of documentation in a comment and moves it to
-the succeeding code chunk.  
+the succeeding code chunk.
 With this filter, \verb+notangle+
-transforms a literate 
+transforms a literate
 program into a traditional commented program, without loss of
 information and with only a modest penalty in readability.
 Figure~\ref{nountangle-output} shows the results of applying
 the filter to the prime-number program shown in
-Figure~\ref{sample-input}. 
+Figure~\ref{sample-input}.
 
 
 
@@ -681,8 +681,8 @@ program print_primes(output);
   var \{ How should table [[p]] be represented? Two possibilities \}
       \{ suggest themselves: We could construct a sufficiently    \}
 \hbox{\hskip2em\tt\vdots}
-\end{webcode} 
-\caption{Output produced from 
+\end{webcode}
+\caption{Output produced from
 Figure~\protect\ref{sample-input} by filter converting documentation
 chunks into comments.}
 \label{nountangle-output}
@@ -692,7 +692,7 @@ chunks into comments.}
 
 Filters can be used to add significant features.
 \verb+noweave+'s cross-reference and indexing features use two
-filters, one that finds uses of defined identifiers and one that 
+filters, one that finds uses of defined identifiers and one that
 uses \verb+@literal+ to insert {\LaTeX} cross-reference
 commands.
 In many cases, a third, language-dependent filter can be used to
@@ -700,7 +700,7 @@ mark identifier definitions,
 making index generation completely automatic;
 otherwise, the \verb+btdefn+ filter can be used to interpret
 hand-place backticks (`) as marking definitions.
-Kostas Oikonomou of AT\&T Bell Labs and Conrado Martinez-Parra of 
+Kostas Oikonomou of AT\&T Bell Labs and Conrado Martinez-Parra of
 the Univ.\ Politecnica de Catalunya in Barcelona have written filters
 that add prettyprinting to {\tt noweb}.
 Oikonomou's filters prettyprint Icon and Object-Oriented Turing;
@@ -712,14 +712,14 @@ of guarded commands.
 
 Unlike {\tt WEB},
 \verb+noweb+ is independent of the target programming language.
-{\tt WEB} tools can be generated for many programming languages, 
+{\tt WEB} tools can be generated for many programming languages,
 but those languages must be lexically similar to C.
 For example, {\tt WEB} can't handle the \verb+awk+ regular-expression
 notation ``\verb+/+\ldots\verb+/+''; every such expression must quoted
 using {\tt WEB}'s ``verbatim'' control sequence.
-The effort required to 
+The effort required to
 generate {\tt WEB} tools is significant; the prospective user must
-write a specification of several hundred 
+write a specification of several hundred
 lines.
 
 Being independent of the target programming language makes {\tt noweb}
@@ -727,19 +727,19 @@ simpler, but it also means that {\tt noweb} can do less.
 Most of the differences between {\tt WEB} and {\tt noweb} arise
 because {\tt WEB} has language-dependent features that are not present
 in \verb+noweb+.
-These features include 
-prettyprinting, 
+These features include
+prettyprinting,
 typesetting comments using {\TeX},
-expanding macros, 
-evaluating constant expressions, 
-and 
+expanding macros,
+evaluating constant expressions,
+and
 converting string literals to indices into a ``string pool.''
-Among these features, 
-\verb+noweb+ users are most likely to miss prettyprinting. 
+Among these features,
+\verb+noweb+ users are most likely to miss prettyprinting.
 
 
 Some differences arise because {\tt WEB} and \verb+noweb+ implement
-similar features differently. 
+similar features differently.
 {\tt WEB}'s  original {\tt TANGLE} removed white space and folded
 lines to fill each line with tokens,
 making its output unreadable~\cite[Chapter~4, Figure~3]{knuth:literate:book}.
@@ -769,7 +769,7 @@ ways: the source of the program itself, and the supporting macros.
 several thousand lines long, and the formatting code is not isolated.
 {\tt noweave}'s source is a 200-line shell script, and it uses a
 60-line {\tt awk} program to generate {\TeX}.
-Both 
+Both
 {\tt WEAVE} and {\tt noweave} use about 200 lines of supporting macros
 for plain {\TeX}.
 \verb+noweb+ uses another 300 lines to support {\LaTeX}, primarily
@@ -806,7 +806,7 @@ indexing is available for a limited set of programming languages.
 {\tt WEB} takes the monolithic approach to literate programming---it
 does everything.
 {\tt noweb}'s approach is to compose
-simple tools that manipulate files in the {\tt noweb} format. 
+simple tools that manipulate files in the {\tt noweb} format.
 Existing Unix tools provide some of the {\tt WEB} features that
 aren't found in \verb+noweb+.
 Unix supplies two macro processors: the C
@@ -822,12 +822,12 @@ more trouble than it is worth~\cite{ramsey:literate}.
 {\tt noweb} was developed on Unix and uses Unix tools like {\tt
 awk} and the Bourne shell, but the only Unix feature it really needs
 is the pipeline.
-All components written in {\tt awk} have been duplicated in Icon; 
+All components written in {\tt awk} have been duplicated in Icon;
 an Icon implementation is freely available from the University of Arizona, and
 it runs on a wide variety of hardware and operating-system platforms.
 {\tt noweb} can be ported to non-Unix platforms provided they have
 pipelines or an emulation thereof, ANSI~C, and either {\tt awk} or Icon.
-For example, 
+For example,
 Lee Wittenberg of Kean College ported {\tt noweb} to MS-DOS by
 rewriting the shell scripts as DOS batch files.
 
@@ -850,7 +850,7 @@ understanding {\tt noweb}'s {\LaTeX} code.
 
 Four things distinguish {\tt noweb} from previous work.
 {\tt noweb} takes as simple as possible a view of literate programming
-and the tools needed to implement it. 
+and the tools needed to implement it.
 Instead of relying on a generator or re-implementation to support
 different programming languages, {\tt noweb} is independent of the
 target programming language.
@@ -860,7 +860,7 @@ Users have extended {\tt noweb} without recompiling its source code.
 
 Experimenting with {\tt noweb} is easy because the tools are simple
 and they work with any language.
-If the experiment is unsatisfying, it is easy to abandon, because 
+If the experiment is unsatisfying, it is easy to abandon, because
 \verb+notangle+'s output, unlike {\tt TANGLE}'s, is readable.
 \verb+noweb+ is simpler than {\tt WEB}, and it is easier to use and
 understand, but it does less.
@@ -868,11 +868,11 @@ I argue, however, that the benefit of {\tt WEB}'s extra features is
 outweighed by cost of the extra complexity,
 making \verb+noweb+  better for writing literate programs.
 
-\verb+noweb+ can be obtained by 
+\verb+noweb+ can be obtained by
 anonymous {\tt ftp} from CTAN,
-the Comprehensive {\TeX} 
+the Comprehensive {\TeX}
 Archive Network, in directory {\tt web/noweb}.  CTAN replicas appear
-on 
+on
 hosts {\tt ftp.shsu.edu}, {\tt ftp.tex.ac.uk}, and {\tt ftp.uni-stuttgart.de}.
 
 \section{Acknowledgements}
