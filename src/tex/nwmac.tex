@@ -90,7 +90,7 @@
 \def\paragraph#1{\startsection{4}{0pt}{1.5ex}{0ex}{\it}{#1}}
 
 % make \hsize in code sufficient for 88 columns
-\setbox0=\hbox{\tt m}
+\setbox0=\hbox\texttt{m}
 \newdimen\codehsize
 \codehsize=91\wd0 % 88 columns wasn't enough; I don't know why
 \newdimen\codemargin
