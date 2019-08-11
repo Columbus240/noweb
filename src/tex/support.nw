@@ -38,7 +38,7 @@ it is indented.\stylehook
 \codehsize=91\wd0 % 88 columns wasn't enough; I don't know why
 \newdimen\codemargin
 \codemargin=0pt
-@ 
+@
 [[\defspace]] is the space we would like on the right of navigational info
 that appears on definition lines, so that it lines up with the text above
 and below.
@@ -96,9 +96,9 @@ think {\tt noweave} ever emits them.
 %%% DON'T   \gdef^^M{\par\startline}}% in case ^^M appears in a \write
 \def\startline{\noindent\hskip\parindent\ignorespaces}
 \def\nwnewline{\ifvmode\else\hfil\break\leavevmode\hbox{}\fi}
-@ 
+@
 
-Within a code environment, it may be necessary to restore the 
+Within a code environment, it may be necessary to restore the
 category codes in order to set a module (chunk) name.
 This hack doesn't properly restore [["]] for use in {\tt german.sty}.
 <<kernel>>=
@@ -125,7 +125,7 @@ Setting up the space code has to be done differently for {\TeX} and
 {\obeyspaces\global\let =\ } % from texbook, p 381
 <<noweb.sty>>=
 {\obeyspaces\AtBeginDocument{\global\let =\ }} % from texbook, p 381
-@ 
+@
 
 {\tt noweave} brackets uses of chunk names with [[\LA]] and [[\RA]], which
 handle the angle brackets, font, and environment.
@@ -143,7 +143,7 @@ in general.
 \def\code{\leavevmode\begingroup\setupcode\newlines}
 \def\edoc{\endgroup}
 \let\maybehbox\relax
-@ 
+@
 
 [[\equivbox]] and [[\plusequivbox]] are used to set the
 ``\unhcopy\equivbox''
@@ -177,7 +177,7 @@ The tag itself is displayed using [[\nwthemargintag]]
 \nwopt@margintag
 \newdimen\nwmarginglue
 \nwmarginglue=0.3in
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -194,7 +194,7 @@ Don't use margin tags.
 @
 <<kernel>>=
 \def\chunklist{%
-\errhelp{I changed \chunklist to \nowebchunks.  
+\errhelp{I changed \chunklist to \nowebchunks.
 I'll try to avoid such incompatible changes in the future.}%
 \errmessage{Use \string\nowebchunks\space instead of \string\chunklist}}
 \def\nowebchunks{\message{<Warning: You need noweave -x to use \string\nowebchunks>}}
@@ -242,9 +242,9 @@ extra [[\reset@font]] does no harm.]
     \@ifundefined{nwopt@\@nwoption}{%
         \@latexerr{There is no such noweb option as '\@nwoption'}\@eha}{%
         \csname nwopt@\@nwoption\endcsname}}}
-@ 
+@
 \subsection{Adjusting placement of code on the page}
-{\LaTeX} requires a larger [[\codehsize]] because 
+{\LaTeX} requires a larger [[\codehsize]] because
 code is indented by [[\codemargin]].\stylehook
 <<noweb.sty>>=
 \codemargin=10pt
@@ -274,7 +274,7 @@ It may be emitted by {\tt noweave -shift}, or it might be given by a user.
 %  \advance \marginparwidth -\dimen@
 }
 \let\nwopt@noshift\@empty
-@ 
+@
 
 \iffalse
 <<man page: [[\noweboptions]]>>=
@@ -288,10 +288,10 @@ off the right-hand side of the page.
 
 We want to insert penalties aiming for:
 \begin{enumerate}
-\item 
+\item
 No page breaks in the middle of a code chunk unless necessary to avoid
 an overfull vbox;
-\item 
+\item
 Documentation immediately preceding a code chunk should appear on
 the same page as that code chunk unless doing so would violate rule 1.
 \end{enumerate}
@@ -348,7 +348,7 @@ Similar options exist for all the
 size-changing commands.
 @ \fi
 @ [[\nowebsize]] governs the size at which code is set; users who want
-to minimize code can [[\let\nowebsize=\small]].  
+to minimize code can [[\let\nowebsize=\small]].
 Slitex users should try
 \begin{quote}
 [[\def\nowebsize{\normalsize\baselineskip=20pt \parskip=5pt }]]
@@ -374,7 +374,7 @@ the glue placed before code chunks.\stylehook
   \topsep \nwcodetopsep
   \@beginparpenalty \@highpenalty
   \@endparpenalty -\@highpenalty
-@ 
+@
 The [[\trivlist]] clich\'e isn't quite a clich\'e because we adjust
 [[\leftskip]] for indentation by [[\codemargin]] and adjust
 [[\rightskip]] to allow lines up to [[\codehsize]] long without
@@ -409,7 +409,7 @@ code chunk.  If you set it to 10000, code will never be broken across
 pages.\stylehook{}  I guess this should be settable in [[\noweboptions]].
 <<noweb.sty>>=
 \newcount\nwcodepenalty  \nwcodepenalty=\@highpenalty
-@ 
+@
 The cursing chunk accounts for the addition of a mess of characters
 to those reset by [[\@noligs]] in \LaTeX2e.
 <<zap ligatures, fix spaces>>=
@@ -441,7 +441,7 @@ vmode; if it does start a new one, it's only indented by the use of
 \def\nwbegindocs#1{\ifvmode\noindent\fi}
 \let\nwenddocs=\relax
 \let\nwdocspar=\filbreak
-@ 
+@
 Some people don't like it that noweb leaves so much white space.
 The secret, undocument style option [[breakcode]] will break up code
 in order to use less white space.
@@ -455,7 +455,7 @@ leave.
   \def\nwdocspar{\@nwsemifilbreak{0.2in}}%
   \def\nwendcode{\endtrivlist\endgroup} % ditches filbreak
 }
-@ 
+@
 The page-breaking strategy implies ragged bottom pages, so we should
 turn it on in general (this is relevant for the {\tt report} style):
 <<noweb.sty>>=
@@ -529,7 +529,7 @@ usuall by making [[\rightskip]] naturally zero but stretchable.
         \rightskip=0pt plus1in
         \interlinepenalty\nwcodepenalty
         \let\\\relax\footnotesize\Rm #1\@@par\penalty\nwcodepenalty}}
-@ 
+@
 This stuff is used at the end of a chunk.
 <<noweb.sty>>=
 \def\@nwalsodefined#1{\nwcodecomment{\@nwlangdepdef\ \nwpageprep\ \@pagesl{#1}.}}
@@ -671,7 +671,7 @@ pages are combined into ranges.
     \fi
   \fi
 \fi
-<<normal range>>=  
+<<normal range>>=
 \edef\@tempa{\noexpand\noexpand\noexpand\\{{\number\@nwlopage--\number\@nwhipage}{}}}
 <<noweb.sty>>=
 \newcount\@nwpagetemp
@@ -754,7 +754,7 @@ on the cross-referencing mechanism and the \LaTeX{} internals used
 below.  [DL: The internals change in \LaTeX2e compared with
 \LaTeX~2.09.  The code here still works, though.]
 @
-The new-style {\LaTeX} page-reference macros all work the same way: 
+The new-style {\LaTeX} page-reference macros all work the same way:
 if the thing is undefined, barf.  Otherwise, do the specified thing.
 We need to handle the fact that the expansion of the label may be two
 items or five items, depending on whether hypertext is used.
@@ -788,7 +788,7 @@ defining the [[2on]] bit appropriately.
   \nwhyperreference{#1}{\nw@genericref\@subpageref{#1}}}
 \def\@subpageref#1#2#3\\{%
   \@ifundefined{2on#2}{#2}{\nwthepagenum{#1}{#2}}}
-@ 
+@
 [[\subpagepair]] produces a [[{subpage}{page}]] pair.
 <<noweb.sty>>=
 \newcommand{\subpagepair}[1]{%  % produces {subpage}{page}
@@ -800,7 +800,7 @@ defining the [[2on]] bit appropriately.
 @
 [[\sublabel]] is like the [[\label]] command, except that it writes
 [[\newsublabel]] onto the [[.aux]] file rather than [[\newlabel]].
-For hyperreferencing, all labels must be hypertext 
+For hyperreferencing, all labels must be hypertext
 anchors, for which we use [[\nwblindhyperanchor]].
 <<noweb.sty>>=
 \newcommand{\sublabel}[1]{%
@@ -813,7 +813,7 @@ anchors, for which we use [[\nwblindhyperanchor]].
       \newsublabel{#1}{{}{\thepage}}}}%
    \expandafter}\@tempa
    \if@nobreak \ifvmode\nobreak\fi\fi\fi\@esphack}
-@ 
+@
 [[\nosublabel]] creates a label with a sub-page part of~0.
 <<noweb.sty>>=
 \newcommand{\nosublabel}[1]{%
@@ -857,7 +857,7 @@ on the page.
   \edef\last@page{\this@page}
   \advance\sub@page by \@ne
 @
-If we've had at least two on the page, we define the 
+If we've had at least two on the page, we define the
 [[2on]]\LA{}{page no.}\RA{} macro to indicate the fact.
 <<definition of [[\newsublabel]]>>=
   \ifnum\sub@page=\tw@
@@ -884,7 +884,7 @@ We unify these two things by producing
 [[{<<ref value>>}{<<page number>>}\nw@labeltrailers]]
 
 We may have pending labels in support of [[\nextchunklabel]], as defined in
-chunk~\subpageref{chunklabel}. 
+chunk~\subpageref{chunklabel}.
 Because we want to define all of the ``pending sublabels'' in exactly
 the same way, we do something a bit odd---we make the current label a
 pending label as well.
@@ -894,7 +894,7 @@ pending label as well.
     {{\number\sub@page}{\this@page}\nw@labeltrailers}}%
   \pending@sublabels
   \def\pending@sublabels{}}
-@ 
+@
 We can't use [[\@ifpackageloaded]] to see if \texttt{nameref} is
 loaded, because that is restricted to the preamble, and
 [[\newsublabel]] goes into the [[.aux]] file, which is executed after
@@ -906,11 +906,11 @@ This is lame, but what else can we do?
   \@ifpackageloaded{nameref}%
      {\gdef\nw@labeltrailers{{}{}{}}}%
      {\gdef\nw@labeltrailers{}}}
-\renewcommand\nw@settrailers{% 
+\renewcommand\nw@settrailers{%
   \@ifundefined{@secondoffive}%
      {\gdef\nw@labeltrailers{}}%
      {\gdef\nw@labeltrailers{{}{}{}}}}
-@ 
+@
 Now we keep track of those pending guys.\nextchunklabel{chunklabel}
 The goal here is to save them up until they're all equivalent to the
 label on the next chunk.
@@ -969,7 +969,7 @@ which can be alphabetic, numeric, or omitted.\stylehook
 \def\nwopt@numsubpage{\let\nwthepagenum=\@numsubpagenum}
 \def\nwopt@alphasubpage{\let\nwthepagenum=\@alphasubpagenum}
 \nwopt@alphasubpage
-@ 
+@
 In rare cases, there may be more than 26 chunks on a page.
 In such a case, we need a sub-page numbering scheme that can go beyond
 ``a to z.''
@@ -1005,7 +1005,7 @@ procedure alphastring(n)
     n -:= bound
     bound *:= 26
   }
-  
+
   while bound > 1 do {
     bound /:= 26
     d := integer(n / bound)
@@ -1013,7 +1013,7 @@ procedure alphastring(n)
     writes(&lcase[d+1])
   }
 end
-@ 
+@
 Here's {\TeX} code to achieve the same end.
 The entire macro body is enclosed in braces, so that it can be used
 with [[\loop]] without picking up the wrong [[\repeat]].
@@ -1038,7 +1038,7 @@ with [[\loop]] without picking up the wrong [[\repeat]].
     \advance\@nwalph@d by 1 \@alph{\@nwalph@d}%
   \repeat
 }}
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1074,7 +1074,7 @@ Since the numbers are all distinct, no sub-page number is ever used.
   \let\sublabel=\weblabel
   \def\nwpageword{chunk}\def\nwpagesword{chunks}%
   \def\nwpageprep{in}}
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1087,7 +1087,7 @@ style, instead of using sub-page numbers.
 \subsection{Indexing (identifier cross-reference) support}
 
 \subsubsection{Tracking definitions and uses}
-All index definitions and uses are associated with 
+All index definitions and uses are associated with
 a label defined with [[\sublabel]] or [[\nosublabel]].
 Either the label is the [[\sublabel]] of the code chunk in which the definition or use
 appears, or it is a [[\nosublabel]] appearing in the middle of a
@@ -1119,7 +1119,7 @@ to their definitions.
 \def\@nwsubscriptident#1#2{\mbox{$\mbox{#1}_{\mathrm{\subpageref{#2}}}$}}
 \def\@nwnosubscriptident#1#2{#1}
 \def\@nwhyperident#1#2{\leavevmode\nwhyperreference{#2}{#1}}
-@ 
+@
 We can use subscripts, hyperlinks, or nothing on all identifiers.
 <<noweb.sty>>=
 \def\nwopt@subscriptidents{%
@@ -1138,7 +1138,7 @@ We can use subscripts, hyperlinks, or nothing on all identifiers.
   \let\nwlinkedidentq\@nwnosubscriptident
   \let\nwlinkedidentc\@nwnosubscriptident
 }
-@ 
+@
 We can change only identifiers appearing in quoted code.
 <<noweb.sty>>=
 \def\nwopt@subscriptquotedidents{%
@@ -1153,11 +1153,11 @@ We can change only identifiers appearing in quoted code.
 \def\nwopt@nohyperquotedidents{%
   \let\nwlinkedidentq\@nwnosubscriptident
 }
-@ 
+@
 The default is to hyperlink everything.
 <<noweb.sty>>=
 \nwopt@hyperidents
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1166,7 +1166,7 @@ Controls subscripting of identifiers in code, including quoted code.
 Selecting
 .B subscriptidents
 means an identifier appearing in a code chunk (or in quoted code
-within a documentation 
+within a documentation
 chunk) will be subscripted with the chunk number of its definition.
 .B hyperidents
 means such identifiers will be hyperlinked to their definitions,
@@ -1205,20 +1205,20 @@ Plus [[\\]] is applied to each element of the list.
                    \advance\@commacount by \m@ne
                    \ifnum\@commacount=1 \@nwlangdepand~\fi\@comma@each}\@comma@each}\fi
    #1}}
-@ 
+@
 
 \subsubsection{New, improved index code}
 There are two kinds of lists.
 One kind is a generic list in which elements are preceded by [[\\]].
 If the elements are index elements, they are {\em[[{]]printable
 identifier[[}{]]label[[}]]} pairs.
-The other kind is a list of sub-page labels, in which each 
+The other kind is a list of sub-page labels, in which each
 element is preceded by either [[\nwixd]] or [[\nwixu]].
 <<noweb.sty>>=
 \def\nwix@cons#1#2{% {list}{\marker{element}}
   {\toks0=\expandafter{#1}\def\@tempa{#2}\toks2=\expandafter{\@tempa}%
    \xdef#1{\the\toks0 \the\toks2 }}}
-@ 
+@
 The reference list for an identifier labelled {\em id}
 is always called [[\nwixl@]]{\em id}.
 Most applications will work with reference lists by applying [[\\]]
@@ -1228,7 +1228,7 @@ either to the defs or to the uses.
   \def\nwixu{\\}\let\nwixd\@gobble\@nameuse{nwixl@#1}}
 \def\nwix@defs#1{% {label}
   \def\nwixd{\\}\let\nwixu\@gobble\@nameuse{nwixl@#1}}
-@ 
+@
 
 Some applications count uses to see whether there is any need to
 display information.
@@ -1255,7 +1255,7 @@ definitions.
 \nwopt@breakdefs
 \def\nwidentuses#1{% list of index pairs
   \nwcodecomment{\@nwlangdepuss\ \let\\=\nwix@id@defs\commafy{#1}.}}
-@ 
+@
 \iffalse
 <<undocumented -- man page: [[\noweboptions]]>>=
 .TP
@@ -1266,8 +1266,8 @@ permits long lists of definitions to be broken in identifier cross-reference.
 Useful if identifier cross-reference produces lots of overfull hboxes.
 .B nobreakdefs
 is the old behavior, which should never be needed.
-@ \fi 
-@ 
+@ \fi
+@
 The definitions section is a bit more complex, because it is omitted
 if none of the identifiers defined is ever used.
 <<noweb.sty>>=
@@ -1293,7 +1293,7 @@ if none of the identifiers defined is ever used.
 <<noweb.sty>>=
 \newif\ifnw@hideunuseddefs\nw@hideunuseddefsfalse
 \def\nwopt@hideunuseddefs{\nw@hideunuseddefstrue}
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1305,7 +1305,7 @@ the local identifier cross-reference (Preston Briggs).
 \def\nwopt@noidentxref{%
   \let\nwidentdefs\@gobble
   \let\nwidentuses\@gobble}
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1343,14 +1343,14 @@ Here's a more efficient version for the external case:
    \def\nwixadds@i##1{\nw@indexline##1}%
    \def\nwixaddsx##1##2{\@nameuse{nwixadds@##1}{##2}}%
    \begin{thenowebindex}\@input{\jobname.nwi}\end{thenowebindex}}}
-@ 
+@
 That list ([[nwisx@i]]) is created by calls to [[\nwixlogsorted{i}]].
 <<noweb.sty>>=
 \def\nwixlogsorted#1#2{% list data
    \@bsphack\if@filesw 
      \toks0={#2}\immediate\write\@auxout{\string\nwixadds{#1}{\the\toks0}}
    \if@nobreak \ifvmode\nobreak\fi\fi\fi\@esphack}
-@ 
+@
 [[nwixs@c]] and [[nwixs@i]] are sorted lists of chunks and identifiers, respectively.
 <<noweb.sty>>=
 \def\nwixadds#1#2{%
@@ -1369,7 +1369,7 @@ If an external index is used, we need a [[.nwi]] file,
     \let\nowebindex=\nowebindex@external
     \let\nowebchunks=\nowebchunks@external
   \fi}
-@ 
+@
 \iffalse
 <<man page: [[\noweboptions]]>>=
 .TP
@@ -1454,7 +1454,7 @@ redefine themselve accordingly, and re-invoke themselves.
     {\global\let\nwblindhyperanchor\@nw@hyperref@anc}%
   \nwblindhyperanchor
 }
-@ 
+@
 \subsection{Support for hypertext translation to HTML}
 <<noweb.sty>>=
 \newcommand\nwanchorto{%
@@ -1509,7 +1509,7 @@ and the
 .I l2h 
 noweb filter translate the text into HTML.
 .RE
-@ 
+@
 \subsection{Support for Prettyprinting}
 The following macro can be redefined to allow custom typesetting of
 identifiers in the index and mini-indices.
@@ -1518,7 +1518,7 @@ identifiers in the index and mini-indices.
 @ 
 @
 The following macros can be redefined to typeset `[[\]]', `[[{]]' and
-`[[}]]' correctly in non-typewriter fonts. 
+`[[}]]' correctly in non-typewriter fonts.
 The problem is that the built-in {\LaTeX} [[\{]] tries to produce a
 math symbol, which doesn't exist in the typewriter font, so we get a
 brace in the wrong font and a warning.  Most unpleasant.
@@ -1534,7 +1534,7 @@ macros to work in their environment.
 \def\nwlbrace{\char123}
 \def\nwrbrace{\char125}
 @
-\subsection{Language-dependent macros} 
+\subsection{Language-dependent macros}
 
 Miguel Filgueiras
 (DCC-FCUP \& LIACC, Universidade do Porto) provided some changes to
@@ -1545,11 +1545,11 @@ The Noweb package uses the
 (apparently standard) {\LaTeX} macro [[\languagename]] to select a
 language at load time.
 If the \texttt{babel} package is
-loaded (with the appropriate language name) before Noweb is loaded, 
+loaded (with the appropriate language name) before Noweb is loaded,
 the Noweb package will select language appropriately, provided the
 language is one of those Noweb supports.
 Mr.~Filgueiras provided support for English,
-Portuguese, German, and French. 
+Portuguese, German, and French.
 He notes that the French is
 faulty; the translations may be poor, and there are
 bugs in the implementation that he could not solve.
@@ -1570,7 +1570,7 @@ macro. There must be a more elegant way of coding the tests below\ldots
      {\noweboptions{english}}
      {\expandafter\noweboptions\expandafter{\languagename}}
 \fi
-@ 
+@
 \subsubsection{Support for English}
 
 This describes the original English text.
@@ -1591,7 +1591,7 @@ This describes the original English text.
   \def\@nwlangdepnvd{never defined}%
 }
 \let\nwopt@american\nwopt@english
-@ 
+@
 
 @
 \subsubsection{Partial support for Icelandic}
@@ -1725,7 +1725,7 @@ revisions by Pascal Schmitt.
   \def\@nwlangdepnvd{nicht definiert}%
   % never defined
 }
-@ 
+@
 Here is a revised version, because the version above did not satisy
 (explanations below).
 <<language support>>=
@@ -1764,48 +1764,48 @@ Changed the [[\@nwlangdepcwf]] yet again.
 Johannes Wiedersich \url{<johannes@physik.blm.tu-muenchen.de>} writes:
 \begin{quote}
 The German latex files contain
-\begin{quote} 
+\begin{quote}
 Dieser Code schreibt man zum File
 \end{quote}
 this is not correct (or understandable) German and not a correct
 translation of the English ``This code is written to file.''
 A better translation would be
-\begin{quote} 
+\begin{quote}
 Dieser Code geht in Datei
 \end{quote}
 I would suggest to use either
-\begin{itemize} 
-\item Dieser Code schreibt den File 
-\item Dieser Code erzeugt die Datei 
+\begin{itemize}
+\item Dieser Code schreibt den File
+\item Dieser Code erzeugt die Datei
 \end{itemize}
 The first is closer to a literal translation of the English text; the
-second option is closer to the \emph{meaning} of the English text and to 
+second option is closer to the \emph{meaning} of the English text and to
 what
 actually happens. (This code generates the file)
 \end{quote}
 The old explanation was:
-\begin{quote} 
+\begin{quote}
 ``Diese Code geht in Datei (x)'' isn't perfect either; the best
 translation would be ``Dieser Code wird in Datei (x) geschrieben'' but
 this would require to put the file name into the middle of the sentence.
-\begin{verbatim} 
+\begin{verbatim}
     \def\@nwlangdepcwf{Dieser Code geht in Datei}%
 \end{verbatim}
 The [[\@nwlangdepchks]] macro is problematic because it has to work
 together with [[\@nwlangdepin]]. It would be best to emit:
-\begin{verbatim} 
+\begin{verbatim}
     benutzt in den Teilen 1b und 2.
     benutzt im Teil 1.
 \end{verbatim}
 This would require to switch between ``in'' and ``im''. Since ``im'' is a
 compund of ``in dem'', I suggest to use an article for the singular, too,
 and to emit:
-\begin{verbatim} 
+\begin{verbatim}
     benutzt in den Teilen 1b und 2.
     benutzt in dem Teil 1.
 \end{verbatim}
 Hence:
-\begin{verbatim} 
+\begin{verbatim}
     \def\@nwlangdepchks{den Teilen}
     \def\@nwlangdepchk{dem Teil}
 \end{verbatim}
@@ -1979,7 +1979,7 @@ First we make [[@]] a letter so that we can use `private' macro names.
 \def\enditemize{\par\endgroup\noindent\ignorespaces}
 
 \let\begindocument=\relax
-@ 
+@
 Finally we make [[@]] `other' again.
 <<nwmac.tex>>=
 \catcode`\@=12

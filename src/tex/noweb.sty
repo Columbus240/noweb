@@ -82,7 +82,7 @@
 \def\plusendmoddef{\RA\ifmmode\mathord{+}\mathord{\equiv}\else\unhcopy\plusequivbox\fi
                \nobreak\hfill\nobreak}
 \def\chunklist{%
-\errhelp{I changed \chunklist to \nowebchunks.  
+\errhelp{I changed \chunklist to \nowebchunks.
 I'll try to avoid such incompatible changes in the future.}%
 \errmessage{Use \string\nowebchunks\space instead of \string\chunklist}}
 \def\nowebchunks{\message{<Warning: You need noweave -x to use \string\nowebchunks>}}
@@ -554,7 +554,7 @@ I'll try to avoid such incompatible changes in the future.}%
   \@ifpackageloaded{nameref}%
      {\gdef\nw@labeltrailers{{}{}{}}}%
      {\gdef\nw@labeltrailers{}}}
-\renewcommand\nw@settrailers{% 
+\renewcommand\nw@settrailers{%
   \@ifundefined{@secondoffive}%
      {\gdef\nw@labeltrailers{}}%
      {\gdef\nw@labeltrailers{{}{}{}}}}
