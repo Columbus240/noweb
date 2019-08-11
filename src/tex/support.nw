@@ -33,7 +33,7 @@ which code is set, and [[\codemargin]], which is the amount by which
 it is indented.\stylehook
 <<kernel>>=
 % make \hsize in code sufficient for 88 columns
-\setbox0=\hbox\texttt{m}
+\setbox0=\hbox{\texttt{m}}
 \newdimen\codehsize
 \codehsize=91\wd0 % 88 columns wasn't enough; I don't know why
 \newdimen\codemargin
