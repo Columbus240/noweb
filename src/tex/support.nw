@@ -14,7 +14,7 @@
 @
 This document describes the {\TeX} code that supports \texttt{noweave}
 and \texttt{noweb}.  Those interested in customizing their output should
-focus on Section~\ref{section:sty}.  
+focus on Section~\ref{section:sty}.
 Hooks you can easily use (apart from those provided by
 [[\noweboptions]]) are indicated by marginal notes.
 This file contains both plain {\TeX} and {\LaTeX} support:
@@ -77,12 +77,12 @@ escaped with a backslash.
   \catcode`\"=\other	% fixes problem with german.sty
   \obeyspaces\Tt
 }
-@ 
+@
 [[\nwendquote]] is called after quoted code.
 It resets the spacefactor
 <<kernel>>=
 \def\nwendquote{\relax\ifhmode\spacefactor=1000 \fi}
-@ 
+@
 [[\eatline]] is used to consume newlines that should be ignored,
 for example, the newlines at the end of [[@ %def ]]{\em identifiers} lines.
 I can't remember what [[\startline]] or [[\newlines]] are for; I don't
@@ -428,7 +428,7 @@ But we'll step on all the others.
 @
 \texttt{noweave} uses [[\nwbegindocs{nnn}]] and [[\nwenddocs]] to bracket
 documentation chunks.
-If a documentation chunk does not continue the current paragraph, 
+If a documentation chunk does not continue the current paragraph,
 \texttt{noweave} inserts [[\nwdocspar]], which uses
 [[\filbreak]] in an attempt to keep the documentation chunk on the
 same page as the code chunk that follows it.  (The code chunk will
